@@ -1,8 +1,20 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import Banner from "../assets/banner.png"
 import "../Styles/Header.css"
 
+
 const Header = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
+
+  const onSubmit = (data, e) => {
+    console.log(data);
+  }
   return (
     <header class="bodyHead">
       <nav class="">
@@ -86,24 +98,47 @@ const Header = () => {
               </p>
 
               <div class="flex flex-col mt-8 space-y-3 ">
-                <form action="">
+                <form action="" onSubmit={handleSubmit(onSubmit)}>
                   <input
                     id="name"
                     type="text"
+                    {...register("name", { required: true })}
+                    aria-invalid={errors.firstName ? "true" : "false"}
                     class="px-4 py-2 text-gray-700 bg-white border  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300 rounded-full w-2/3 mb-3"
                     placeholder="Enter Your Name"
                   />
+                  <label className="label">
+                    {errors.name?.type === "required" && (
+                      <p className=" text-red-600 font-semibold ml-28 mb-2">
+                        Name is required
+                      </p>
+                    )}
+                  </label>
                   <input
                     id="email"
                     type="email"
-                    class="px-4 py-2 text-gray-700 bg-white border  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300 rounded-full w-2/3"
+                    {...register("email", {
+                      required: "Email Address is required",
+                    })}
+                    aria-invalid={errors.mail ? "true" : "false"}
+                    class="px-4 py-2 text-gray-700 bg-white border  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300 rounded-full w-2/3 mb-3"
                     placeholder="Enter Your Email"
                   />
-                </form>
 
-                <button class="w-2/3 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform hover:bg-purple-700 border rounded-full">
-                  Submit
-                </button>
+                  <label className="label">
+                    {errors.email?.type === "required" && (
+                      <p className=" text-red-600 font-semibold ml-24 mb-2">
+                        {errors.email?.message}
+                      </p>
+                    )}
+                  </label>
+
+                  <input
+                    class="w-2/3 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform hover:bg-purple-700 border rounded-full space-y-3"
+                    name="Submit"
+                    type="submit"
+                  ></input>
+                </form>
               </div>
             </div>
           </div>
@@ -114,7 +149,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="flex justify-center lg:justify-end space-x-1 container py-2">
+      <div className="flex justify-center lg:justify-end space-x-1 container py-2 ">
         <a href="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
