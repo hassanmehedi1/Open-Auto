@@ -1,5 +1,7 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Banner from "../assets/banner.png"
 import "../Styles/Header.css"
 
@@ -14,6 +16,21 @@ const Header = () => {
 
   const onSubmit = (data, e) => {
     console.log(data);
+
+    const url = `http://localhost:5000/submit`;
+
+    axios.post(url, data).then((response) => {
+      const { data } = response;
+      console.log(data);
+      if (data.insertedId) {
+        e.target.reset();
+        toast.success("Submitted Successfully");
+      }
+      else{
+        toast.error("Submission failed! Please Try Again")
+      }
+    });
+
   }
   return (
     <header class="bodyHead">
@@ -74,7 +91,7 @@ const Header = () => {
                 service@openauto.ca
               </a>
               <a
-                class="my-1 text-sm flex justify-center items-center text-gray-500 rtl:-scale-x-100 dark:text-gray-200 hover:bg-blue-500 lg:mx-4 lg:my-0 border-2 px-5 py-3 rounded-full"
+                class="my-1 text-sm flex justify-center items-center text-gray-500 rtl:-scale-x-100 dark:text-gray-200 hover:bg-blue-500 lg:mx-4 lg:my-0 border-2 px-5 py-3 rounded-full cursor-pointer"
                 href="#"
               >
                 Download the mobile app
@@ -134,7 +151,7 @@ const Header = () => {
                   </label>
 
                   <input
-                    class="w-2/3 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform hover:bg-purple-700 border rounded-full space-y-3"
+                    class="w-2/3 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform hover:bg-purple-700 border rounded-full space-y-3 cursor-pointer"
                     name="Submit"
                     type="submit"
                   ></input>
