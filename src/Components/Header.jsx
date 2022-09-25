@@ -105,17 +105,21 @@ const Header = () => {
         <div class="items-center lg:flex">
           <div class="w-full lg:w-1/2">
             <div class="lg:max-w-lg">
-              <h1 class="text-2xl font-semibold text-gray-800 dark:text-white lg:text-5xl">
+              <h1 class="text-4xl font-semibold text-gray-800 dark:text-white lg:text-5xl lg:text-left text-center">
                 Vehicle Maintenance From The Comfort of Your Home
               </h1>
 
-              <p class="mt-4 text-gray-600 dark:text-gray-400 mb-10">
+              <p class="mt-4 text-gray-600 dark:text-gray-400 mb-10 lg:text-left text-center">
                 Open Auto Soothes the hassle of maintaining your vehicle and
                 helps you deal with unexpected repairs worry-free.
               </p>
 
-              <div class="flex flex-col mt-8 space-y-3 ">
-                <form action="" onSubmit={handleSubmit(onSubmit)}>
+              <div class="flex flex-col mt-8 space-y-3 lg:justify-start justify-center">
+                <form
+                  className="lg:text-left text-center"
+                  action=""
+                  onSubmit={handleSubmit(onSubmit)}
+                >
                   <input
                     id="name"
                     type="text"

@@ -8,7 +8,7 @@ const Footer = () => {
          <div className="space-y-5">
            <a
              href="#"
-             class="text-3xl lg:text-xl font-bold text-white sm:mx-auto"
+             class="text-3xl lg:text-xl font-bold text-white lg:ml-0 ml-8"
            >
              OpenAuto
            </a>
@@ -65,7 +65,7 @@ const Footer = () => {
              </a>
            </div>
 
-           <div className="flex justify-center lg:justify-end space-x-1 container py-2">
+           <div className="flex justify-evenly lg:justify-end lg:space-x-1 space-x-12 container py-2">
              <a href="/">
                <svg
                  xmlns="http://www.w3.org/2000/svg"
