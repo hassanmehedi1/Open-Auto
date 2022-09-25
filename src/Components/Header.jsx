@@ -17,7 +17,7 @@ const Header = () => {
   const onSubmit = (data, e) => {
     console.log(data);
 
-    const url = `http://localhost:5000/submit`;
+    const url = `https://open-auto-server.onrender.com/submit`;
 
     axios.post(url, data).then((response) => {
       const { data } = response;
